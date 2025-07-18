@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eyelash Extensions | Sheri Salon</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .bill-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+      position: relative;
+      border-radius: 8px;
+    }
+    
+    .profile-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      position: relative;
+    }
+    
+    .profile-pic {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 25px;
+      border: 3px solid #f0f0f0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-text h1 {
+      font-size: 28px;
+      margin: 0;
+      color: #222;
+      letter-spacing: 0.5px;
+    }
+    
+    .header-text p {
+      margin: 8px 0 0;
+      color: #888;
+      font-size: 16px;
+      font-weight: 300;
+    }
+    
+    /* Drawing Animation */
+    .drawing-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #222 0%, #222 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: drawLine 2s ease-in-out forwards;
+    }
+    
+    @keyframes drawLine {
+      0% { background-position: 100% 0; }
+      100% { background-position: 0 0; }
+    }
+    
+    .service-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #eaeaea;
+    }
+    
+    .service-info {
+      flex: 1;
+      padding-right: 20px;
+    }
+    
+    .service-name {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #222;
+    }
+    
+    .service-desc {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .service-price {
+      font-weight: 700;
+      color: #e63946;
+      min-width: 90px;
+      text-align: right;
+      font-size: 18px;
+      padding-top: 3px;
+    }
+    
+    .price-note {
+      display: block;
+      font-size: 13px;
+      color: #999;
+      font-weight: normal;
+      margin-top: 3px;
+    }
+    
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 25px;
+    }
+    
+    .footer p {
+      margin: 5px 0;
+    }
+    
+    @media (max-width: 480px) {
+      .bill-container {
+        padding: 25px;
+      }
+      
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 25px;
+      }
+      
+      .profile-pic {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+      
+      .service-item {
+        flex-direction: column;
+      }
+      
+      .service-price {
+        text-align: left;
+        margin-top: 10px;
+        padding-left: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bill-container">
+    <div class="profile-header">
+      <img src="https://sherisalontx.com/wp-content/uploads/2022/12/photo-7-copy-1350x1536.jpg" alt="Sheri Salon" class="profile-pic">
+      <div class="header-text">
+        <h1>Sheri Salon</h1>
+        <p>Eyelash Enhancement Services</p>
+      </div>
+      <div class="drawing-line"></div>
+    </div>
+    
+    <div class="service-item">
+      <div class="service-info">
+        <div class="service-name">Eyelash Extensions</div>
+        <div class="service-desc">
+          Semi-permanent fibers attached to natural lashes for a fuller, dramatic look. 
+          Professionally applied with specialized adhesive, lasting several weeks with proper care.
+        </div>
+      </div>
+      <div class="service-price">
+        $80<span class="price-note">starting at</span>
+      </div>
+    </div>
+    
+    <div class="service-item">
+      <div class="service-info">
+        <div class="service-name">Eyebrow Lamination</div>
+        <div class="service-desc">
+          Chemical treatment that reshapes and sets brows in place for a fuller, defined look. 
+          Creates a polished appearance that lasts several weeks.
+        </div>
+      </div>
+      <div class="service-price">
+        $80<span class="price-note">and up</span>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>909 W Spring Creek Pkwy #411, Plano, TX 75023</p>
+      <p>214.694.6407 | sherisalontx@gmail.com</p>
+      <p>By appointment only</p>
+    </div>
+  </div>
+</body>
+</html>

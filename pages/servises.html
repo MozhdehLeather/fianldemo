@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheri Salon TX | Beauty Services</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <style>
+    /* Base Styles */
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      padding: 20px 0;
+      background: var(--white);
+      z-index: 1000;
+      position: fixed;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .nav-links a {
+      font-weight: 500;
+      position: relative;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      background: var(--black);
+      bottom: -3px;
+      left: 0;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Underline Loop Animation */
+    .underline-loop {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .underline-loop::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      background: var(--black);
+      bottom: -5px;
+      left: 0;
+      animation: underlineLoop 6s linear infinite;
+    }
+    
+    @keyframes underlineLoop {
+      0% { width: 0; left: 0; }
+      50% { width: 100%; left: 0; }
+      100% { width: 0; left: 100%; }
+    }
+    
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .menu-toggle span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: var(--black);
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    
+    .menu-toggle span:nth-child(1) {
+      top: 6px;
+    }
+    
+    .menu-toggle span:nth-child(2), 
+    .menu-toggle span:nth-child(3) {
+      top: 12px;
+    }
+    
+    .menu-toggle span:nth-child(4) {
+      top: 18px;
+    }
+    
+    .menu-toggle.open span:nth-child(1) {
+      top: 12px;
+      width: 0%;
+      left: 50%;
+    }
+    
+    .menu-toggle.open span:nth-child(2) {
+      transform: rotate(45deg);
+    }
+    
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+    
+    .menu-toggle.open span:nth-child(4) {
+      top: 12px;
+      width: 0%;
+      left: 50%;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 400px;
+      height: 100vh;
+      background: var(--white);
+      z-index: 1000;
+      padding: 100px 30px 30px;
+      transition: var(--transition);
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    
+    .mobile-menu.open {
+      right: 0;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .mobile-nav-links a {
+      font-size: 18px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 180px 0 100px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 20px;
+      line-height: 1.2;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .hero .btn {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Service Sections */
+    .service-section {
+      padding: 120px 0;
+    }
+    
+    .service-container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    
+    .service-container.reverse {
+      flex-direction: row-reverse;
+    }
+    
+    .service-image {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+    
+    .service-image:hover img {
+      transform: scale(1.05);
+    }
+    
+    .service-content {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    
+    .service-container.reverse .service-content {
+      transform: translateX(-40px);
+    }
+    
+    .service-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .service-content p {
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+    }
+
+    /* Creative Divider */
+    .creative-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--black), transparent);
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .creative-divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--white), var(--black), transparent);
+      animation: dividerLoop 6s linear infinite;
+    }
+    
+    @keyframes dividerLoop {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* CTA Section */
+    .cta {
+      text-align: center;
+      padding: 120px 0;
+    }
+    
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .cta .btn {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-col h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 1px;
+      background: var(--white);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.7);
+      transition: var(--transition);
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--white);
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      section {
+        padding: 80px 0;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .service-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+      .service-container.reverse {
+        flex-direction: column;
+      }
+      
+      .service-content {
+        text-align: center;
+        transform: translateX(0) !important;
+      }
+      
+      .service-image img {
+        height: 400px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0;
+      }
+      
+      .hero {
+        padding: 150px 0 80px;
+      }
+      
+      .service-image img {
+        height: 350px;
+      }
+      
+      .service-content h2 {
+        font-size: 2rem;
+      }
+      
+      .cta h2 {
+        font-size: 2rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero {
+        padding: 130px 0 60px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      
+      .service-image img {
+        height: 300px;
+      }
+      
+      .service-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .service-content p {
+        font-size: 1rem;
+      }
+      
+      .creative-divider {
+        margin: 50px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="container navbar">
+      <a href="#" class="logo underline-loop">SHERI SALON</a>
+      <nav class="nav-links">
+        <a href="#skin-care">Skin Care</a>
+        <a href="#hair-services">Hair Services</a>
+        <a href="#permanent-makeup">Permanent Makeup</a>
+        <a href="#waxing-threading">Waxing & Threading</a>
+        <a href="#eyelash-extensions">Eyelash Extensions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <nav class="mobile-nav-links">
+        <a href="#skin-care" class="mobile-nav-link">Skin Care</a>
+        <a href="#hair-services" class="mobile-nav-link">Hair Services</a>
+        <a href="#permanent-makeup" class="mobile-nav-link">Permanent Makeup</a>
+        <a href="#waxing-threading" class="mobile-nav-link">Waxing & Threading</a>
+        <a href="#eyelash-extensions" class="mobile-nav-link">Eyelash Extensions</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+      </nav>
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Minimal Beauty <span class="underline-loop">Perfected</span></h1>
+      <p>Experience the art of subtle transformation with our carefully curated beauty services in Plano, TX.</p>
+      <a href="../booking/booking.html" class="btn">Book Appointment</a>
+    </div>
+  </section>
+
+  <!-- Skin Care Section -->
+  <section class="service-section" id="skin-care">
+    <div class="container service-container">
+      <div class="service-image">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1186&q=80" 
+             alt="Skin Care Services">
+      </div>
+      <div class="service-content">
+        <h2><span class="underline-loop">Skin Care</span> Special Services</h2>
+        <p>A good skin care routine will reduce visible pores, wrinkles, and under eye circles. Protection from harmful sun rays will prevent sun damage, blemishes, and hyper-pigmentation. As the individual ages, the skin loses hydration, brightness, and collagen.</p>
+        <a href="service/skincare.html" class="btn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="creative-divider"></div>
+  </div>
+
+  <!-- Hair Services Section -->
+  <section class="service-section" id="hair-services">
+    <div class="container service-container reverse">
+      <div class="service-image">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80" 
+             alt="Hair Services">
+      </div>
+      <div class="service-content">
+        <h2><span class="underline-loop">Hair Services</span></h2>
+        <p>This includes haircutting, regular and formal styling, chemical treatments (such as color, highlights, perms, and straightening treatments), hair and scalp treatments, and beard and mustache shaping.</p>
+        <a href="service/Hair.html" class="btn">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="creative-divider"></div>
+  </div>
+
+  <!-- Permanent Makeup Section -->
+  <section class="service-section" id="permanent-makeup">
+    <div class="container service-container">
+      <div class="service-image">
+        <img src="service/resources/makeup.jpg      " 
+             alt="Permanent Makeup">
+      </div>
+      <div class="service-content">
+        <h2><span class="underline-loop">Permanent Makeup</span></h2>
+        <p>Permanent makeup is a cosmetic technique which employs tattoos as a means of producing designs that resemble makeup, such as eye-lining and other permanent enhancing colors to the skin of the face, lips, and eyelids.</p>
+        <a href="service/PermanentMakeup.html" class="btn">Book Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="creative-divider"></div>
+  </div>
+
+  <!-- Waxing & Threading Section -->
+  <section class="service-section" id="waxing-threading">
+    <div class="container service-container reverse">
+      <div class="service-image">
+        <img src="resources/professional-woman-making-wax-another-woman-arm.jpg" 
+             alt="Waxing Services">
+      </div>
+      <div class="service-content">
+        <h2><span class="underline-loop">Waxing</span></h2>
+        <p>Waxing is the process of hair removal from the root by using a covering of a sticky substance, such as wax, to adhere to body hair, and then removing this covering and pulling out the hair from the follicle.</p>
+        <a href="service/Waxing.html" class="btn">Book Service</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="creative-divider"></div>
+  </div>
+
+  
+  <section class="service-section">
+    <div class="container service-container">
+      <div class="service-image">
+        <img src="resources/threading.jpg" 
+             alt="Threading Services">
+      </div>
+      <div class="service-content">
+        <h2><span class="underline-loop">Threading</span></h2>
+        <p>Threading is a method of hair removal for both men and women originating in Iran, Indus valley and India. It has gained popularity in Western countries, especially with a cosmetic application.</p>
+        <a href="service/Threading.html" class="btn">Book Service</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="creative-divider"></div>
+  </div>
+
+  <!-- Eyelash Extensions Section -->
+  <section class="service-section" id="eyelash-extensions">
+    <div class="container service-container reverse">
+      <div class="service-image">
+        <img src="resources/Eyelash Extensions.jpg" 
+             alt="Eyelash Extensions">
+      </div>
+      <div class="service-content">
+        <h2><span class="underline-loop">Eyelash Extensions</span></h2>
+        <p>Eyelash extensions are a cosmetic enhancement that involves attaching synthetic or natural hair fibers to the natural eyelashes to create a fuller, more dramatic look. They are applied by a professional using a specialized adhesive and can last for several weeks with proper care.</p>
+        <a href="service/EyelashExtension.html" class="btn">Book Lash Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="creative-divider"></div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <h2>Ready to <span class="underline-loop">Transform</span> Your Look?</h2>
+      <p>Book your appointment today and experience the Sheri Salon difference in Plano, TX.</p>
+      <a href="contact.html" class="btn">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Sheri Salon</h3>
+          <p>Your premier destination for beauty and wellness services in Plano, TX.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#skin-care">Skin Care</a></li>
+            <li><a href="#hair-services">Hair Services</a></li>
+            <li><a href="#permanent-makeup">Permanent Makeup</a></li>
+            <li><a href="#waxing-threading">Waxing & Threading</a></li>
+            <li><a href="#eyelash-extensions">Eyelash Extensions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="https://goo.gl/maps/9JZ8Z8Z8Z8Z8Z8Z8" target="_blank">909 W Spring Creek Pkwy #411, Plano, TX</a></li>
+            <li><a href="tel:2146946407">(214) 694-6407</a></li>
+            <li><a href="mailto:info@sherisalon.com">info@sherisalon.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Hours</h3>
+          <ul>
+            <li>Monday - Saturday: 9:00 AM - 7:00 PM</li>
+            <li>Sunday: Closed</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2023 Sheri Salon. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Register ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animate hero elements
+      gsap.to('.hero h1', {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        ease: 'power3.out',
+        delay: 0.3
+      });
+
+      gsap.to('.hero p', {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        ease: 'power3.out',
+        delay: 0.6
+      });
+
+      gsap.to('.hero .btn', {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        ease: 'power3.out',
+        delay: 0.9
+      });
+
+      // Animate service sections
+      gsap.utils.toArray('.service-content').forEach((content, i) => {
+        ScrollTrigger.create({
+          trigger: content,
+          start: "top 80%",
+          onEnter: () => {
+            gsap.to(content, {
+              duration: 0.8,
+              x: 0,
+              opacity: 1,
+              ease: 'power3.out'
+            });
+          }
+        });
+      });
+
+      // Animate CTA section
+      ScrollTrigger.create({
+        trigger: '.cta',
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to('.cta h2', {
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: 'power3.out'
+          });
+          gsap.to('.cta p', {
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: 'power3.out',
+            delay: 0.2
+          });
+          gsap.to('.cta .btn', {
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: 'power3.out',
+            delay: 0.4
+          });
+        }
+      });
+
+      // Mobile menu toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const overlay = document.querySelector('.overlay');
+
+      menuToggle.addEventListener('click', function() {
+        this.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        overlay.classList.toggle('active');
+        
+        // Toggle body scroll
+        if (mobileMenu.classList.contains('open')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+
+      overlay.addEventListener('click', function() {
+        menuToggle.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        this.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      // Close mobile menu when resizing to desktop
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 992) {
+          menuToggle.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

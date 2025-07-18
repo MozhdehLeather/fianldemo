@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Feedback | Sheri Salon TX</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2a2a2a;
+      --secondary: #ffffff;
+      --accent: #d4af73;
+      --text: #333333;
+      --light-text: #666666;
+      --bg: #f8f8f8;
+      --card-bg: #ffffff;
+      --border: #e8e8e8;
+      --success: #4CAF50;
+      --error: #f44336;
+      --warning: #FFCC00;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .header h1 {
+      font-family: 'Cormorant', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    
+    .header p {
+      color: var(--light-text);
+      font-size: 1.1rem;
+    }
+    
+    /* Feedback Card */
+    .feedback-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 3rem;
+      margin: 0 auto;
+      transform: translateY(20px);
+      opacity: 0;
+      border: 1px solid var(--border);
+    }
+    
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--card-bg);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 175, 115, 0.2);
+    }
+    
+    textarea.form-control {
+      min-height: 140px;
+      resize: vertical;
+    }
+    
+    /* Rating Stars */
+    .rating-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 2rem 0;
+    }
+    
+    .rating-input {
+      display: none;
+    }
+    
+    .rating-label {
+      font-size: 2.5rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .rating-label:hover,
+    .rating-label:hover ~ .rating-label {
+      color: var(--warning);
+    }
+    
+    .rating-input:checked + .rating-label,
+    .rating-input:checked ~ .rating-label {
+      color: var(--warning);
+    }
+    
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    
+    .submit-btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* Thank You Card */
+    .thank-you-card {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+    }
+    
+    .thank-you-icon {
+      font-size: 4rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      animation: bounce 1s ease infinite alternate;
+    }
+    
+    .thank-you-title {
+      font-family: 'Cormorant', serif;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+    }
+    
+    .thank-you-message {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--light-text);
+    }
+    
+    .ticket-number {
+      display: inline-block;
+      background: rgba(212, 175, 115, 0.1);
+      color: var(--primary);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin: 1.5rem 0;
+      border: 1px dashed var(--accent);
+    }
+    
+    .message-paper {
+      background: #FFF9E6;
+      padding: 1.8rem;
+      border-radius: 10px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--accent);
+      text-align: left;
+      position: relative;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .message-paper:before {
+      content: "\f005";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: var(--accent);
+      opacity: 0.2;
+    }
+    
+    /* Salon Info */
+    .salon-info {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    .salon-info h3 {
+      font-family: 'Cormorant', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+    }
+    
+    .salon-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--light-text);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .feedback-card, .thank-you-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .rating-label {
+        font-size: 2rem;
+      }
+      
+      .thank-you-title {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .feedback-card, .thank-you-card {
+        padding: 1.8rem 1.2rem;
+      }
+      
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .header p {
+        font-size: 1rem;
+      }
+      
+      .rating-label {
+        font-size: 1.8rem;
+      }
+      
+      .thank-you-title {
+        font-size: 1.6rem;
+      }
+      
+      .submit-btn {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Share Your Experience</h1>
+      <p>Your feedback helps us improve and serve you better</p>
+    </div>
+    
+    <!-- Feedback Form -->
+    <div class="feedback-card" id="feedbackFormContainer">
+      <form id="feedbackForm">
+        <div class="form-group">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" id="name" class="form-control" required placeholder="Enter your name">
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" class="form-control" required placeholder="Enter your email">
+        </div>
+        
+        <div class="form-group">
+          <label for="service" class="form-label">Service Received</label>
+          <select id="service" class="form-control" required>
+            <option value="" disabled selected>Select a service</option>
+            <optgroup label="Skin Care">
+              <option value="facial">Facial</option>
+              <option value="microneedling">Microneedling</option>
+              <option value="laser-hair-removal">Laser Hair Removal</option>
+              <option value="plasma-pen">Plasma Pen</option>
+              <option value="microdermabrasion">Microdermabrasion</option>
+            </optgroup>
+            <optgroup label="Hair Services">
+              <option value="hair-color">Hair Color</option>
+              <option value="hair-cut">Hair Cut</option>
+              <option value="highlights">Highlights</option>
+              <option value="keratin-treatment">Keratin Treatment</option>
+            </optgroup>
+            <optgroup label="Permanent Makeup">
+              <option value="microblading">Microblading</option>
+              <option value="eyeliner">Eyeliner</option>
+              <option value="lip-blush">Lip Blush</option>
+            </optgroup>
+            <optgroup label="Eyelash Services">
+              <option value="eyelash-extension">Eyelash Extension</option>
+              <option value="eyebrow-lamination">Eyebrow Lamination</option>
+            </optgroup>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="stylist" class="form-label">Stylist/Therapist (if known)</label>
+          <input type="text" id="stylist" class="form-control" placeholder="Who served you?">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">How would you rate your experience?</label>
+          <div class="rating-container">
+            <input type="radio" id="star5" name="rating" value="5" class="rating-input" required>
+            <label for="star5" class="rating-label">★</label>
+            <input type="radio" id="star4" name="rating" value="4" class="rating-input">
+            <label for="star4" class="rating-label">★</label>
+            <input type="radio" id="star3" name="rating" value="3" class="rating-input">
+            <label for="star3" class="rating-label">★</label>
+            <input type="radio" id="star2" name="rating" value="2" class="rating-input">
+            <label for="star2" class="rating-label">★</label>
+            <input type="radio" id="star1" name="rating" value="1" class="rating-input">
+            <label for="star1" class="rating-label">★</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="feedback" class="form-label">Your Feedback</label>
+          <textarea id="feedback" class="form-control" required placeholder="Tell us about your experience... What did you love? How can we improve?"></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane"></i> Submit Feedback
+        </button>
+      </form>
+      
+      <!-- Salon Information -->
+      <div class="salon-info">
+        <h3>Sheri Salon TX</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 909 W Spring Creek Pkwy #411, Plano, TX 75023</p>
+        <p><i class="fas fa-phone"></i> (214) 694-6407</p>
+        <p><i class="fas fa-clock"></i> Tue-Sat: 9am - 7pm</p>
+      </div>
+    </div>
+    
+    <!-- Thank You Card (hidden initially) -->
+    <div class="thank-you-card" id="thankYouCard">
+      <div class="thank-you-icon">
+        <i class="fas fa-heart"></i>
+      </div>
+      <h2 class="thank-you-title">Thank You!</h2>
+      <p class="thank-you-message" id="thankYouMessage">We truly appreciate you taking the time to share your feedback with us.</p>
+      
+      <div class="message-paper" id="personalizedMessage">
+        <!-- Personalized message will appear here based on rating -->
+      </div>
+      
+      <div class="ticket-number" id="ticketNumber"></div>
+      <p>We've received your feedback and will use it to enhance our services.</p>
+      
+      <div class="salon-info">
+        <h3>Visit Us Again Soon</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 909 W Spring Creek Pkwy #411, Plano, TX</p>
+        <p><i class="fas fa-phone"></i> (214) 694-6407</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate the form entrance
+      gsap.to("#feedbackFormContainer", {
+        duration: 0.8,
+        y: 0,
+        opacity: 1,
+        ease: "back.out(1.2)"
+      });
+      
+      // Form submission
+      const feedbackForm = document.getElementById('feedbackForm');
+      const feedbackFormContainer = document.getElementById('feedbackFormContainer');
+      const thankYouCard = document.getElementById('thankYouCard');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+      const personalizedMessage = document.getElementById('personalizedMessage');
+      const ticketNumber = document.getElementById('ticketNumber');
+      
+      feedbackForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const rating = document.querySelector('input[name="rating"]:checked')?.value;
+        const service = document.getElementById('service').value;
+        const stylist = document.getElementById('stylist').value;
+        const feedbackText = document.getElementById('feedback').value;
+        
+        // Generate ticket number
+        const now = new Date();
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const generatedTicketNumber = `FB-${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2, '0')}${now.getDate().toString().padStart(2, '0')}-${randomNum}`;
+        
+        // Set personalized message based on rating
+        let message = '';
+        if (rating) {
+          switch(rating) {
+            case '5':
+              message = `Dear ${name},<br><br>We're absolutely thrilled to receive your 5-star rating! Thank you for choosing Sheri Salon and for taking the time to share your wonderful experience.`;
+              if (stylist) {
+                message += ` We'll be sure to share your kind words with ${stylist}.`;
+              }
+              message += `<br><br>Your satisfaction is our greatest reward, and we can't wait to welcome you back for another exceptional experience.`;
+              break;
+            case '4':
+              message = `Dear ${name},<br><br>Thank you for your 4-star rating! We're pleased you had a good experience with our ${service} service.`;
+              if (stylist) {
+                message += ` Your feedback about ${stylist} is appreciated.`;
+              }
+              message += `<br><br>We're always looking for ways to improve, and we'd love to know what would have made your experience perfect. Please don't hesitate to reach out to us directly.`;
+              break;
+            case '3':
+              message = `Dear ${name},<br><br>We appreciate your 3-star rating for your ${service} service. It seems your experience was average, and we'd like to understand how we can do better.`;
+              if (feedbackText) {
+                message += `<br><br>We've noted your comments: "${feedbackText.substring(0, 100)}${feedbackText.length > 100 ? '...' : ''}"`;
+              }
+              message += `<br><br>Our team will review your feedback carefully to identify areas for improvement.`;
+              break;
+            case '2':
+              message = `Dear ${name},<br><br>We sincerely apologize that your experience with our ${service} service only merited a 2-star rating. This is not the standard we aim for at Sheri Salon.`;
+              if (feedbackText) {
+                message += `<br><br>We've carefully noted your concerns: "${feedbackText.substring(0, 120)}${feedbackText.length > 120 ? '...' : ''}"`;
+              }
+              message += `<br><br>Our manager would like to personally address your concerns. Please expect a follow-up email within 24 hours.`;
+              break;
+            case '1':
+              message = `Dear ${name},<br><br>We're truly sorry to receive your 1-star rating regarding your ${service} service. This is completely unacceptable to us, and we take your feedback very seriously.`;
+              if (feedbackText) {
+                message += `<br><br>We've documented your feedback: "${feedbackText.substring(0, 150)}${feedbackText.length > 150 ? '...' : ''}"`;
+              }
+              message += `<br><br>Our salon manager will contact you directly within 24 hours to discuss how we can make this right and regain your trust.`;
+              break;
+            default:
+              message = `Dear ${name},<br><br>Thank you for your feedback about your ${service} service. We value your input and will use it to improve our services.`;
+          }
+        }
+        
+        // Set the messages and ticket number
+        personalizedMessage.innerHTML = message;
+        ticketNumber.textContent = generatedTicketNumber;
+        
+        // Animate form out and thank you card in
+        gsap.to(feedbackFormContainer, {
+          duration: 0.5,
+          y: 20,
+          opacity: 0,
+          display: 'none',
+          ease: "power2.in",
+          onComplete: function() {
+            thankYouCard.style.display = 'block';
+            gsap.fromTo(thankYouCard, 
+              { y: 30, opacity: 0 }, 
+              { 
+                duration: 0.8, 
+                y: 0, 
+                opacity: 1, 
+                ease: "back.out(1.2)" 
+              }
+            );
+            
+            // Animate the writing effect for the personalized message
+            const text = personalizedMessage.innerHTML;
+            personalizedMessage.innerHTML = '';
+            
+            let i = 0;
+            const typingEffect = setInterval(function() {
+              if (i < text.length) {
+                personalizedMessage.innerHTML += text.charAt(i);
+                i++;
+              } else {
+                clearInterval(typingEffect);
+              }
+            }, 20);
+          }
+        });
+        
+        // In a real implementation, you would send the form data to your server here
+        // For demo purposes, we'll just log it
+        const formData = {
+          name,
+          email: document.getElementById('email').value,
+          service,
+          stylist,
+          rating,
+          feedback: feedbackText,
+          ticketNumber: generatedTicketNumber,
+          timestamp: new Date().toISOString()
+        };
+        console.log('Form submitted:', formData);
+      });
+    });
+  </script>
+</body>
+</html>

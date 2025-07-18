@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Sheri Salon TX</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prata&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Base Styles */
+      :root {
+        --black: #111111;
+        --white: #ffffff;
+        --light-gray: #f5f5f5;
+        --medium-gray: #777777;
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        --border: 1px solid rgba(0, 0, 0, 0.08);
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        --radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--black);
+        background: var(--white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Prata", serif;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      /* Header */
+      header {
+        padding: 30px 0;
+        border-bottom: var(--border);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Prata", serif;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: var(--black);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .logo:hover {
+        opacity: 0.8;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+      }
+
+      .nav-links a {
+        color: var(--black);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--black);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+        background: var(--light-gray);
+        margin-bottom: 80px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 24px;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero p {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        color: var(--medium-gray);
+        font-size: 1.1rem;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Section 1: Our Salon */
+      .about-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin-bottom: 80px;
+        background: var(--white);
+        transition: var(--transition);
+      }
+
+      .about-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-text,
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+        padding: 60px;
+      }
+
+      .about-image {
+        background: var(--light-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: var(--radius);
+        transition: var(--transition);
+      }
+
+      .about-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 24px;
+      }
+
+      .about-text p {
+        color: var(--medium-gray);
+        margin-bottom: 30px;
+        font-size: 1.05rem;
+      }
+
+      .mission-statement {
+        padding: 24px;
+        border-left: 3px solid var(--black);
+        margin-top: 40px;
+        background: var(--light-gray);
+        border-radius: 0 var(--radius) var(--radius) 0;
+      }
+
+      .mission-statement h3 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+      }
+
+      /* Section 2: Team */
+      .team-section {
+        background: var(--light-gray);
+      }
+
+      .team-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 80px;
+        position: relative;
+      }
+
+      .team-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: var(--black);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .team-member {
+        display: flex;
+        flex-direction: column;
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .member-image-container {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+      }
+
+      .member-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .team-member:hover .member-image {
+        transform: scale(1.05);
+      }
+
+      .member-info {
+        padding: 30px;
+      }
+
+      .member-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+      }
+
+      .member-role {
+        color: var(--medium-gray);
+        font-weight: 500;
+        margin-bottom: 20px;
+        display: block;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+
+      .member-bio {
+        margin-bottom: 24px;
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--black);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .social-link i {
+        transition: var(--transition);
+      }
+
+      .social-link:hover {
+        color: var(--medium-gray);
+      }
+
+      .social-link:hover i {
+        transform: translateX(5px);
+      }
+
+      .placeholder-icon {
+        font-size: 3rem;
+        color: var(--medium-gray);
+        opacity: 0.5;
+      }
+
+      /* Services Preview */
+      .services-preview {
+        text-align: center;
+        padding: 80px 0;
+      }
+
+      .services-preview h2 {
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      .services-preview h2::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: var(--black);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .service-card {
+        padding: 30px;
+        border-radius: var(--radius);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--black);
+      }
+
+      .service-card h3 {
+        margin-bottom: 15px;
+      }
+
+      .service-card p {
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--black);
+        color: var(--white);
+        padding: 100px 0 40px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        font-family: "Prata", serif;
+      }
+
+      .footer-col h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 1px;
+        background: var(--white);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-col ul li a {
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: var(--transition);
+        display: inline-block;
+      }
+
+      .footer-col ul li a:hover {
+        color: var(--white);
+        transform: translateX(5px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--medium-gray);
+        font-size: 0.85rem;
+      }
+
+      /* Button */
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        background: var(--black);
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius);
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 15px;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--black);
+        border: 1px solid var(--black);
+      }
+
+      .btn-outline:hover {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        section {
+          padding: 80px 0;
+        }
+
+        .about-text,
+        .about-image {
+          padding: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        section {
+          padding: 60px 0;
+        }
+
+        .hero {
+          padding: 80px 0 60px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-text,
+        .about-image {
+          flex: 100%;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .team-grid,
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .about-text,
+        .about-image {
+          padding: 30px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="header-container container">
+        <a href="#" class="logo">SHERI SALON</a>
+        <nav class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Services</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Elegance Redefined</h1>
+        <p>
+          Discover the artistry of beauty at Sheri Salon, where every service is
+          crafted to bring out your natural radiance.
+        </p>
+        <a href="#" class="btn">Book an Appointment</a>
+      </div>
+    </section>
+
+    <!-- Section 1: Our Salon -->
+    <section class="container">
+      <div class="about-section">
+        <div class="about-text">
+          <h2>Our Salon</h2>
+          <p>
+            Sheri Salon is the premier unisex salon in Texas, combining the best
+            equipment with a warm, welcoming atmosphere. Our expert team
+            delivers exceptional results with personalized care for every
+            client.
+          </p>
+
+          <div class="mission-statement">
+            <h3>OUR MISSION & PHILOSOPHY</h3>
+            <p>
+              We believe in empowering individuals by revealing their inner
+              beauty through expert care and personalized attention.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-image">
+          <img
+            src="https://sherisalontx.com/wp-content/uploads/2022/12/37784157-0832-4f68-ab92-9da3fb895e09-2.jpg"
+            alt="Sheri Salon Interior"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Team -->
+    <section class="team-section">
+      <div class="container">
+        <h2>Meet Our Team</h2>
+
+        <div class="team-grid">
+          <!-- Founder -->
+          <div class="team-member">
+            <div class="member-image-container">
+              <img
+                src="https://sherisalontx.com/wp-content/uploads/2022/12/photo-7-copy-1350x1536.jpg"
+                alt="Sheri Shamsi"
+                class="member-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="member-info">
+              <h3>SHERI SHAMSI</h3>
+              <span class="member-role">FOUNDER & OWNER</span>
+              <p class="member-bio">
+                With over 20 years of experience, Sheri has established herself
+                as one of the most skilled stylists in Texas. Her dedication to
+                perfection and warm personality have earned her a loyal
+                clientele who consistently praise her exceptional talent and
+                kindness.
+              </p>
+              <a
+                href="https://www.instagram.com/sherisalon.tx?igshid=MWI4MTIyMDE%3D"
+                class="social-link"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+            </div>
+          </div>
+
+          <!-- Manager -->
+          <div class="team-member">
+            <div class="member-image-container">
+              <img
+                src="https://sherisalontx.com/wp-content/uploads/2023/01/IMG_4718.jpg"
+                alt="Ronnie Aslanli"
+                class="member-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="member-info">
+              <h3>RONNIE ASLANLI</h3>
+              <span class="member-role">MANAGER</span>
+              <p class="member-bio">
+                Ronnie brings innovative business strategies and operational
+                excellence to Sheri Salon. His unique background in construction
+                informs his creative approach to salon management, ensuring
+                every client enjoys a seamless and exceptional experience.
+              </p>
+              <a
+                href="https://www.instagram.com/rohi.aslani.135890?igshid=MWI4MTIyMDE%3D"
+                class="social-link"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+            </div>
+          </div>
+
+          <!-- Skin Care -->
+          <div class="team-member">
+            <div class="member-image-container">
+              <img
+                src="https://sherisalontx.com/wp-content/uploads/2023/01/PHOTO-2022-12-15-11-38-56.jpg"
+                alt="neda afshar "
+                class="member-image"
+              />
+            </div>
+            <div class="member-info">
+              <h3>NEDA AFSHAR</h3>
+              <span class="member-role">SKIN CARE SPECIALIST</span>
+              <p class="member-bio">
+                Neda specializes in advanced skin treatments including plasma
+                fibroblast therapy, microneedling, and laser procedures. Her
+                meticulous approach and gentle touch have transformed countless
+                complexions, earning her the nickname "The Skin Whisperer" among
+                our clients.
+              </p>
+              <a href="#" class="social-link">
+                <i class="fas fa-envelope"></i> Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-cut"></i>
+            </div>
+            <h3>Hair Styling</h3>
+            <p>
+              Expert cuts and styling tailored to enhance your natural beauty
+              and personal style.
+            </p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-spa"></i>
+            </div>
+            <h3>Skin Treatments</h3>
+            <p>
+              Advanced skincare solutions including facials, peels, and
+              rejuvenating treatments.
+            </p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3>Color Services</h3>
+            <p>
+              Custom color formulations and techniques for vibrant,
+              healthy-looking hair.
+            </p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Visit Us</h3>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt" style="margin-right: 8px"></i>
+                909 W Spring Creek Pkwy #411
+              </li>
+              <li>Plano, TX 75023</li>
+              <li>United States</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Working Hours</h3>
+            <ul>
+              <li>
+                <i class="far fa-clock" style="margin-right: 8px"></i> Monday -
+                Saturday
+              </li>
+              <li>09:00 am - 07:00 pm</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li>
+                <a href="#"
+                  ><i
+                    class="fas fa-chevron-right"
+                    style="margin-right: 8px"
+                  ></i>
+                  Home</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i
+                    class="fas fa-chevron-right"
+                    style="margin-right: 8px"
+                  ></i>
+                  Services</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i
+                    class="fas fa-chevron-right"
+                    style="margin-right: 8px"
+                  ></i>
+                  About</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i
+                    class="fas fa-chevron-right"
+                    style="margin-right: 8px"
+                  ></i>
+                  Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Connect</h3>
+            <ul>
+              <li>
+                <a href="tel:2146946407"
+                  ><i class="fas fa-phone" style="margin-right: 8px"></i> 214
+                  694 64 07</a
+                >
+              </li>
+              <li>
+                <a href="mailto:sherisalontx@gmail.com"
+                  ><i class="far fa-envelope" style="margin-right: 8px"></i>
+                  sherisalontx@gmail.com</a
+                >
+              </li>
+              <li>
+                <div style="display: flex; gap: 16px; margin-top: 16px">
+                  <a href="#" style="color: var(--white)"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a href="#" style="color: var(--white)"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <a href="#" style="color: var(--white)"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; 2023 Sheri Salon. All rights reserved. Crafted with
+            <i class="fas fa-heart" style="color: #ff6b6b"></i> in Texas
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
