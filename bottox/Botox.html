@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Book Botox Treatment | Precision Aesthetics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2a2a2a;
+      --secondary: #ffffff;
+      --accent: #d4af73;
+      --text: #333333;
+      --light-text: #666666;
+      --bg: #f8f8f8;
+      --card-bg: #ffffff;
+      --border: #e8e8e8;
+      --success: #4CAF50;
+      --error: #f44336;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .booking-container {
+      max-width: 1000px;
+      width: 100%;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .booking-header {
+      background: var(--primary);
+      color: var(--secondary);
+      padding: 30px;
+      grid-column: 1 / -1;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .booking-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+    
+    .booking-header h1 {
+      font-family: 'Cormorant', serif;
+      font-size: 32px;
+      margin: 0 0 8px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    
+    .booking-header p {
+      margin: 0;
+      opacity: 0.85;
+      font-size: 15px;
+    }
+    
+    .booking-form {
+      padding: 30px;
+      position: relative;
+    }
+    
+    .booking-details {
+      padding: 30px;
+      background: #fafafa;
+      border-left: 1px solid var(--border);
+      max-height: 800px;
+      overflow-y: auto;
+      position: relative;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text);
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      transition: var(--transition);
+      background: var(--card-bg);
+      color: var(--text);
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 175, 115, 0.2);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 16px 30px;
+      background: var(--primary);
+      color: var(--secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    .btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .service-category {
+      margin-bottom: 25px;
+    }
+    
+    .service-category h3 {
+      font-family: 'Cormorant', serif;
+      font-size: 22px;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .service-category h3::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent);
+    }
+    
+    .service-item {
+      padding: 15px 0;
+      border-bottom: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    
+    .service-item:hover {
+      background: rgba(0,0,0,0.02);
+    }
+    
+    .service-item:last-child {
+      border-bottom: none;
+    }
+    
+    .service-info {
+      flex: 1;
+      padding-right: 10px;
+    }
+    
+    .service-name {
+      font-weight: 500;
+      display: block;
+      color: var(--primary);
+    }
+    
+    .service-desc {
+      font-size: 13px;
+      color: var(--light-text);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    
+    .service-price {
+      color: var(--accent);
+      font-weight: 600;
+      margin-left: 15px;
+      white-space: nowrap;
+      font-size: 15px;
+    }
+    
+    .clinic-info {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .clinic-info h3 {
+      font-family: 'Cormorant', serif;
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    
+    .clinic-info p {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    
+    .clinic-info i {
+      margin-right: 12px;
+      width: 20px;
+      text-align: center;
+      color: var(--accent);
+    }
+    
+    /* Invoice Styles */
+    .invoice-container {
+      display: none;
+      max-width: 600px;
+      width: 100%;
+      background: white;
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .invoice-header {
+      background: var(--primary);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .invoice-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+    
+    .invoice-header h2 {
+      font-family: 'Cormorant', serif;
+      margin: 0;
+      font-size: 26px;
+      font-weight: 600;
+    }
+    
+    .invoice-body {
+      padding: 25px;
+    }
+    
+    .invoice-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
+    }
+    
+    .invoice-label {
+      font-weight: 500;
+      color: var(--light-text);
+      font-size: 14px;
+    }
+    
+    .invoice-value {
+      font-weight: 500;
+      text-align: right;
+      color: var(--text);
+    }
+    
+    .invoice-total {
+      font-size: 17px;
+      font-weight: 600;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid var(--accent);
+    }
+    
+    .invoice-footer {
+      background: #f9f9f9;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--light-text);
+      border-top: 1px solid var(--border);
+    }
+    
+    .confirmation-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background: rgba(76, 175, 80, 0.1);
+      border-radius: var(--radius);
+      margin-bottom: 25px;
+      color: var(--success);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .confirmation-message i {
+      font-size: 40px;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .confirmation-message h3 {
+      margin: 10px 0 5px;
+      font-family: 'Cormorant', serif;
+      font-size: 22px;
+      color: var(--success);
+    }
+    
+    .confirmation-message p {
+      margin: 0;
+      font-size: 15px;
+    }
+    
+    .print-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .print-btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* Error states */
+    .error-message {
+      color: var(--error);
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .error input,
+    .error select,
+    .error textarea {
+      border-color: var(--error);
+    }
+    
+    .error .error-message {
+      display: block;
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin: 20px auto;
+      border: 4px solid rgba(0,0,0,0.1);
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--border);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: darken(var(--accent), 10%);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+        align-items: flex-start;
+      }
+      
+      .booking-container {
+        grid-template-columns: 1fr;
+        margin: 0;
+      }
+      
+      .booking-details {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        max-height: none;
+      }
+      
+      .booking-header h1 {
+        font-size: 28px;
+      }
+      
+      .booking-header p {
+        font-size: 14px;
+      }
+      
+      .booking-form, .booking-details {
+        padding: 25px;
+      }
+      
+      .service-category h3 {
+        font-size: 20px;
+      }
+      
+      .invoice-container {
+        margin: 0;
+      }
+      
+      .btn {
+        padding: 14px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      
+      .booking-header {
+        padding: 25px 20px;
+      }
+      
+      .booking-form, .booking-details {
+        padding: 20px;
+      }
+      
+      input, select, textarea {
+        padding: 12px 14px;
+      }
+    }
+    
+    /* Print styles */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .invoice-container, .invoice-container * {
+        visibility: visible;
+      }
+      .invoice-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+      }
+      .print-btn {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="booking-container" id="bookingForm">
+    <div class="booking-header">
+      <h1>Book Your Botox Treatment</h1>
+      <p>Precision treatments tailored to your aesthetic goals</p>
+    </div>
+    
+    <div class="booking-form">
+      <form id="appointmentForm">
+        <div class="confirmation-message" id="confirmationMessage">
+          <i class="fas fa-check-circle"></i>
+          <h3>Appointment Booked Successfully!</h3>
+          <p>Your appointment has been confirmed. A confirmation has been sent to your email.</p>
+        </div>
+        
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+          <div class="error-message">Please enter your full name</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+          <div class="error-message">Please enter a valid email address</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required>
+          <div class="error-message">Please enter a valid phone number</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="service">Treatment Type</label>
+          <select id="service" required>
+            <option value="">Select a treatment type</option>
+            <option value="botox">Botox Treatments</option>
+          </select>
+          <div class="error-message">Please select a treatment type</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="specific-service">Specific Treatment</label>
+          <select id="specific-service" required disabled>
+            <option value="">Select a specific treatment</option>
+          </select>
+          <div class="error-message">Please select a specific treatment</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" required>
+          <div class="error-message">Please select a date</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="time">Preferred Time</label>
+          <input type="time" id="time" required>
+          <div class="error-message">Please select a time</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="notes">Special Requests <small>(Optional)</small></label>
+          <textarea id="notes" rows="3" placeholder="Any specific concerns or areas to focus on..."></textarea>
+        </div>
+        
+        <div class="spinner" id="loadingSpinner"></div>
+        <button type="submit" class="btn" id="submitBtn">
+          <i class="fas fa-calendar-check" style="margin-right: 8px;"></i> Book Appointment
+        </button>
+      </form>
+    </div>
+    
+    <div class="booking-details">
+      <div class="service-category">
+        <h3>Botox Treatments</h3>
+        <div class="service-item">
+          <div class="service-info">
+            <span class="service-name">20 Units of Botox</span>
+            <span class="service-desc">Ideal for forehead lines or crow's feet. Results last 3-4 months. Treatment takes 15-20 minutes.</span>
+          </div>
+          <span class="service-price">$300</span>
+        </div>
+        <div class="service-item">
+          <div class="service-info">
+            <span class="service-name">30 Units of Botox</span>
+            <span class="service-desc">Comprehensive treatment for forehead and glabellar lines. Results last 3-4 months. Treatment takes 20-30 minutes.</span>
+          </div>
+          <span class="service-price">$450</span>
+        </div>
+        <div class="service-item">
+          <div class="service-info">
+            <span class="service-name">40 Units of Botox</span>
+            <span class="service-desc">Complete facial rejuvenation including brow lift. Results last 3-4 months. Treatment takes 30-45 minutes.</span>
+          </div>
+          <span class="service-price">$600</span>
+        </div>
+      </div>
+      
+      <div class="clinic-info">
+        <h3>Clinic Information</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Aesthetic Lane, Beauty City, BC 12345</p>
+        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+        <p><i class="fas fa-clock"></i> Mon-Fri: 9am - 6pm</p>
+        <p><i class="fas fa-calendar-alt"></i> Sat: 10am - 4pm (By appointment only)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invoice Template (hidden by default) -->
+  <div class="invoice-container" id="invoiceContainer">
+    <div class="invoice-header">
+      <h2>Appointment Confirmation</h2>
+    </div>
+    <div class="invoice-body">
+      <div class="invoice-row">
+        <div class="invoice-label">Appointment ID:</div>
+        <div class="invoice-value" id="invoice-id">BT-2023-001</div>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-label">Date:</div>
+        <div class="invoice-value" id="invoice-date">May 15, 2023</div>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-label">Time:</div>
+        <div class="invoice-value" id="invoice-time">10:30 AM</div>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-label">Client:</div>
+        <div class="invoice-value" id="invoice-client">John Doe</div>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-label">Contact:</div>
+        <div class="invoice-value" id="invoice-contact">john@example.com<br>(123) 456-7890</div>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-label">Treatment:</div>
+        <div class="invoice-value" id="invoice-service">30 Units of Botox ($450)</div>
+      </div>
+      <div class="invoice-row">
+        <div class="invoice-label">Special Requests:</div>
+        <div class="invoice-value" id="invoice-notes">Focus on forehead lines</div>
+      </div>
+      <div class="invoice-total">
+        <div class="invoice-row">
+          <div class="invoice-label">Total:</div>
+          <div class="invoice-value" id="invoice-total">$450</div>
+        </div>
+      </div>
+    </div>
+    <div class="invoice-footer">
+      <h3>Pre-Treatment Instructions</h3>
+      <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+        <li>Avoid alcohol 24 hours before treatment</li>
+        <li>Discontinue blood-thinning medications 3-5 days prior (consult your doctor)</li>
+        <li>Arrive with a clean face, free of makeup</li>
+      </ul>
+      <p>Please arrive 10 minutes before your appointment time.</p>
+      <button class="print-btn" onclick="window.print()">
+        <i class="fas fa-print" style="margin-right: 8px;"></i> Print Confirmation
+      </button>
+      <button class="print-btn" onclick="backToForm()" style="margin-left: 10px; background: var(--light-text);">
+        <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Booking
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Service data structure with prices
+    const services = {
+      'botox': [
+        { name: '20 Units of Botox', price: 300, duration: '15-20 min', results: '3-4 months' },
+        { name: '30 Units of Botox', price: 450, duration: '20-30 min', results: '3-4 months' },
+        { name: '40 Units of Botox', price: 600, duration: '30-45 min', results: '3-4 months' }
+      ]
+    };
+
+    // Form validation function
+    function validateForm() {
+      let isValid = true;
+      const form = document.getElementById('appointmentForm');
+      const inputs = form.querySelectorAll('input[required], select[required]');
+      
+      inputs.forEach(input => {
+        const formGroup = input.closest('.form-group');
+        if (!input.value) {
+          formGroup.classList.add('error');
+          isValid = false;
+        } else {
+          formGroup.classList.remove('error');
+        }
+        
+        // Special validation for email
+        if (input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+          formGroup.classList.add('error');
+          formGroup.querySelector('.error-message').textContent = 'Please enter a valid email address';
+          isValid = false;
+        }
+      });
+      
+      return isValid;
+    }
+
+    // Update specific services dropdown when category changes
+    document.getElementById('service').addEventListener('change', function() {
+      const category = this.value;
+      const specificServiceSelect = document.getElementById('specific-service');
+      const formGroup = specificServiceSelect.closest('.form-group');
+      
+      // Clear existing options
+      specificServiceSelect.innerHTML = '<option value="">Select a specific treatment</option>';
+      
+      if (category && services[category]) {
+        specificServiceSelect.disabled = false;
+        formGroup.classList.remove('error');
+        
+        services[category].forEach(service => {
+          const option = document.createElement('option');
+          option.value = service.name.toLowerCase().replace(/\s+/g, '-');
+          option.textContent = `${service.name} ($${service.price})`;
+          option.dataset.price = service.price;
+          option.dataset.duration = service.duration;
+          option.dataset.results = service.results;
+          specificServiceSelect.appendChild(option);
+        });
+      } else {
+        specificServiceSelect.disabled = true;
+      }
+    });
+
+    // Real-time validation on input
+    document.querySelectorAll('input, select').forEach(input => {
+      input.addEventListener('input', function() {
+        const formGroup = this.closest('.form-group');
+        if (this.value) {
+          formGroup.classList.remove('error');
+        }
+      });
+    });
+
+    // Form submission handler
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Validate form
+      if (!validateForm()) {
+        // Scroll to first error
+        const firstError = document.querySelector('.error');
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      
+      // Show loading spinner
+      document.getElementById('loadingSpinner').style.display = 'block';
+      document.getElementById('submitBtn').disabled = true;
+      document.getElementById('submitBtn').innerHTML = 'Processing...';
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const serviceCategory = document.getElementById('service').value;
+      const specificService = document.getElementById('specific-service');
+      const serviceName = specificService.options[specificService.selectedIndex].text;
+      const servicePrice = specificService.options[specificService.selectedIndex].dataset.price;
+      const serviceDuration = specificService.options[specificService.selectedIndex].dataset.duration;
+      const serviceResults = specificService.options[specificService.selectedIndex].dataset.results;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const notes = document.getElementById('notes').value;
+      
+      // Generate a random appointment ID
+      const appointmentId = 'BT-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+      
+      // Format date for display
+      const formattedDate = new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      // Format time for display
+      const formattedTime = new Date('1970-01-01T' + time + ':00').toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+      
+      // Prepare data for spreadsheet
+      const formData = {
+        timestamp: new Date().toISOString(),
+        appointmentId,
+        name,
+        email,
+        phone,
+        serviceCategory,
+        serviceName,
+        servicePrice,
+        serviceDuration,
+        serviceResults,
+        date,
+        time,
+        notes
+      };
+      
+      // In a real implementation, you would send this data to your backend or Google Apps Script
+      // For this demo, we'll simulate a successful submission after a short delay
+      setTimeout(() => {
+        // Hide spinner and show confirmation
+        document.getElementById('loadingSpinner').style.display = 'none';
+        document.getElementById('confirmationMessage').style.display = 'block';
+        
+        // Generate and show invoice
+        generateInvoice({
+          id: appointmentId,
+          date: formattedDate,
+          time: formattedTime,
+          client: name,
+          email: email,
+          phone: phone,
+          service: serviceName,
+          notes: notes || 'None',
+          price: servicePrice,
+          duration: serviceDuration,
+          results: serviceResults
+        });
+        
+        // Reset button state
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('submitBtn').innerHTML = '<i class="fas fa-calendar-check" style="margin-right: 8px;"></i> Book Appointment';
+        
+        // Scroll to top to see confirmation
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          document.getElementById('appointmentForm').reset();
+          document.getElementById('specific-service').disabled = true;
+          document.getElementById('confirmationMessage').style.display = 'none';
+        }, 5000);
+      }, 1500);
+    });
+    
+    // Function to generate and display the invoice
+    function generateInvoice(data) {
+      document.getElementById('bookingForm').style.display = 'none';
+      document.getElementById('invoiceContainer').style.display = 'block';
+      
+      // Populate invoice fields
+      document.getElementById('invoice-id').textContent = data.id;
+      document.getElementById('invoice-date').textContent = data.date;
+      document.getElementById('invoice-time').textContent = data.time;
+      document.getElementById('invoice-client').textContent = data.client;
+      document.getElementById('invoice-contact').innerHTML = `${data.email}<br>${data.phone}`;
+      document.getElementById('invoice-service').textContent = `${data.service} (Duration: ${data.duration}, Results Last: ${data.results})`;
+      document.getElementById('invoice-notes').textContent = data.notes;
+      document.getElementById('invoice-total').textContent = `$${data.price}`;
+      
+      // Scroll to invoice
+      setTimeout(() => {
+        document.getElementById('invoiceContainer').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      
+      // In a real implementation, you would also send this invoice via email
+    }
+    
+    // Back button for invoice
+    function backToForm() {
+      document.getElementById('invoiceContainer').style.display = 'none';
+      document.getElementById('bookingForm').style.display = 'grid';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Initialize the date field with tomorrow's date as the minimum
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      
+      const dd = String(tomorrow.getDate()).padStart(2, '0');
+      const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+      const yyyy = tomorrow.getFullYear();
+      
+      document.getElementById('date').min = `${yyyy}-${mm}-${dd}`;
+      
+      // Set default time to next available hour
+      const nextHour = today.getHours() + 1;
+      document.getElementById('time').value = `${nextHour.toString().padStart(2, '0')}:00`;
+    });
+  </script>
+</body>
+</html>
